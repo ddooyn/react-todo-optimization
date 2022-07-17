@@ -50,3 +50,48 @@ button {
   border-top: 1px solid #dee2e6;
 }
 ```
+
+---
+> ## classnames 라이브러리
+`cn('default클래스이름', 조건부클래스이름)` 형태  
+checked true일 때만 기존 checkbox 클래스 + checked 클래스가 붙음
+```jsx
+import cn from 'classnames';
+// ...
+const TodoListItem = ({ todo }) => {
+  const { text, checked } = todo;
+  return (
+    <div className="TodoListItem">
+      <div className={cn('checkbox', { checked })}>
+      </div>
+    </div>
+  );
+};
+// ...
+```
+스타일링은 이렇게!
+```css
+.checkbox {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+  svg {
+    font-size: 1.5rem;
+  }
+  .text {
+    flex: 1;
+    margin-left: 0.5rem;
+  }
+  /* checked 클래스가 있을 때 */
+  &.checked {
+    svg {
+      color: #22b8cf;
+    }
+    .text {
+      color: #adb5bd;
+      text-decoration: line-through;
+    }
+  }
+}
+```
